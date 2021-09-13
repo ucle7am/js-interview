@@ -1,4 +1,4 @@
-const fetchGracePeriodLogicFromMapping = require('./grace-period.js')
+const fetchGracePeriodLogicFromMapping = require('./index.js')
 
 
 describe('grace period utils', () => {
@@ -41,5 +41,32 @@ describe('grace period utils', () => {
     it('should fetch logic name from string', () => {
         expect(fetchGracePeriodLogicFromMapping('1231', 'test1:123;test2:444;'))
             .toBe(null)
+    })
+})
+describe('some destructive tests', () => {
+    it('empty args', () => {
+        expect(fetchGracePeriodLogicFromMapping('', '')).toBe(
+            null
+        )
+    })
+    it('undefined args', () => {
+        expect(fetchGracePeriodLogicFromMapping(undefined, undefined)).toBe(
+            null
+        )
+    })
+    it('null args', () => {
+        expect(fetchGracePeriodLogicFromMapping(null, null)).toBe(
+            null
+        )
+    })
+    it('function args', () => {
+        expect(fetchGracePeriodLogicFromMapping(new Function('a,b','return a+b'), ()=> 'OMG')).toBe(
+            null
+        )
+    })
+    it('obj args', () => {
+        expect(fetchGracePeriodLogicFromMapping({}, {})).toBe(
+            null
+        )
     })
 })
